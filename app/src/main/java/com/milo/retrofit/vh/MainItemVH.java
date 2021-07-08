@@ -25,10 +25,16 @@ public class MainItemVH extends RecyclerView.ViewHolder implements View.OnClickL
     private TextView tvName;
 
     private MainItem data;
+    private OnClickListener onClickListener;
 
-    public MainItemVH(@NonNull View itemView) {
+    public interface OnClickListener{
+        void onClick(MainItem data);
+    }
+
+    public MainItemVH(@NonNull View itemView, OnClickListener onClickListener) {
         super(itemView);
         itemView.setOnClickListener(this);
+        this.onClickListener = onClickListener;
         tvName = itemView.findViewById(R.id.tv_name);
     }
 
@@ -39,13 +45,7 @@ public class MainItemVH extends RecyclerView.ViewHolder implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        if (data != null) {
-            if (data == MainItem.OkHttp) {
-                v.getContext().startActivity(OkHttpActivity.createIntent(v.getContext()));
-            } else if (data == MainItem.Retrofit) {
-                v.getContext().startActivity(RetrofitActivity.createIntent(v.getContext()));
-            }
-        }
+        this.onClickListener.onClick(data);
     }
 
 }

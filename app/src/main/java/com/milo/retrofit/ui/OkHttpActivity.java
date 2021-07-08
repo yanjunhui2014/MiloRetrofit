@@ -80,7 +80,6 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
                             viewBinding.tvResponse.setText(String.format("异常%s", throwable.getMessage()));
                         }
                     });
-
         }
     }
 }

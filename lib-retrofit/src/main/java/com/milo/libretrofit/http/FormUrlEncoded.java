@@ -1,11 +1,11 @@
 package com.milo.libretrofit.http;
 
-
 import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Title：
@@ -14,13 +14,10 @@ import java.lang.annotation.Target;
  * <p>
  * Created by Milo
  * E-Mail : 303767416@qq.com
- * 6/25/21
+ * 7/8/21
  */
 @Documented
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface GET {
-
-    String value() default "";
-
+@Target(METHOD)
+@Retention(RUNTIME)
+public @interface FormUrlEncoded {
 }

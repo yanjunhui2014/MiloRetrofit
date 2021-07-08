@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.milo.retrofit.data.MainItem;
 import com.milo.retrofit.databinding.ActivityMainBinding;
+import com.milo.retrofit.ui.OkHttpActivity;
+import com.milo.retrofit.ui.RetrofitActivity;
 import com.milo.retrofit.vh.MainItemVH;
 
 import java.util.ArrayList;
@@ -43,7 +45,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public MainItemVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View rootView = LayoutInflater.from(MainActivity.this).inflate(R.layout.vh_main_item, null);
-                MainItemVH itemVH = new MainItemVH(rootView);
+                MainItemVH itemVH = new MainItemVH(rootView, new MainItemVH.OnClickListener() {
+                    @Override
+                    public void onClick(MainItem data) {
+                        if (data == MainItem.OkHttp) {
+                            startActivity(OkHttpActivity.createIntent(MainActivity.this));
+                        } else if (data == MainItem.Retrofit) {
+                            startActivity(RetrofitActivity.createIntent(MainActivity.this));
+                        }
+                    }
+                });
                 return itemVH;
             }
 

@@ -13,6 +13,7 @@ import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+
 import okhttp3.ResponseBody;
 import okio.Buffer;
 
@@ -493,6 +494,16 @@ final class Utils {
             if (lowerBound != null) return "? super " + typeToString(lowerBound);
             if (upperBound == Object.class) return "?";
             return "? extends " + typeToString(upperBound);
+        }
+    }
+
+    static void throwIfFatal(Throwable t) {
+        if (t instanceof VirtualMachineError) {
+            throw (VirtualMachineError) t;
+        } else if (t instanceof ThreadDeath) {
+            throw (ThreadDeath) t;
+        } else if (t instanceof LinkageError) {
+            throw (LinkageError) t;
         }
     }
 }
